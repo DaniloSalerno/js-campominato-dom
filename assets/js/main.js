@@ -6,6 +6,7 @@ const difficultyDomEl = document.querySelector('form select');
 const boxElement = document.querySelector('.box');
 const gameOutDomEl = document.querySelector('.game_out');
 const gameOutBtn = document.querySelector('.game_out button');
+const winnerDomEl = document.querySelector('.game_out h2');
 const positionBomb = [];
 let squareLimit;
 let bomb;
@@ -75,6 +76,13 @@ function generateSquares(element, limit) {
 
                 gameOutDomEl.classList.add('overlay');
                 gameOutDomEl.classList.remove('d-none');
+                winnerDomEl.textContent = 'Hai perso'
+            }
+
+            if (score === squareLimit - positionBomb.length) {
+                gameOutDomEl.classList.add('overlay');
+                gameOutDomEl.classList.remove('d-none');
+                winnerDomEl.textContent = 'Hai vinto'
             }
             
             scoreNumberEl.innerHTML = score
