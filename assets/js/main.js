@@ -1,17 +1,33 @@
 const btn = document.querySelector('button');
+const formDomEl = document.querySelector('form');
+const difficultyDomEl = document.querySelector('form select');
 const boxElement = document.querySelector('.box');
 
-btn.addEventListener('click', () => {
-    btn.classList.add('d-none');
+
+btn.addEventListener('click', (e) => {
+    
+    e.preventDefault();
+
+    const difficulty = difficultyDomEl.value;
+    let squareLimit;
+    if (difficulty === 'easy') {
+        squareLimit = 100;
+    } else if (difficulty === 'medium') {
+        squareLimit = 81;
+    } else if (difficulty === 'hard') {
+        squareLimit = 49;
+    }
+
+    formDomEl.classList.add('d-none');
+
     boxElement.classList.remove('d-none')
 
-    generateSquares(boxElement, 100);
+    generateSquares(boxElement, squareLimit);
     
 })
 
 function generateSquares(element, limit) {
 
-    
     for (let i = 1; i <= limit; i++) {
 
         const squareElement = document.createElement('div');
