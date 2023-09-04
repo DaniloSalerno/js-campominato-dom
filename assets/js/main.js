@@ -1,10 +1,13 @@
 const btn = document.querySelector('button');
+const scoreDomEl = document.querySelector('.score');
+const scoreNumberEl = document.querySelector('.score span')
 const formDomEl = document.querySelector('form');
 const difficultyDomEl = document.querySelector('form select');
 const boxElement = document.querySelector('.box');
 const positionBomb = [];
 let squareLimit;
 let bomb;
+let score = 0;
 
 btn.addEventListener('click', (e) => {
     
@@ -21,6 +24,8 @@ btn.addEventListener('click', (e) => {
     }
 
     formDomEl.classList.add('d-none');
+
+    scoreDomEl.classList.remove('d-none')
 
     boxElement.classList.remove('d-none')
 
@@ -46,16 +51,32 @@ function generateSquares(element, limit) {
 
         squareElement.addEventListener('click', () => {
 
+            score += 1;
+
             squareElement.classList.toggle('bg-dark')
             
             squareElement.classList.toggle('bg-primary')
             
             console.log(squareElement.id);
             
-            if (positionBomb.includes(Number(squareElement.id))) {
-                squareElement.classList.toggle('bg-danger');
-                alert('Hai perso')
+            if (!squareElement.classList.contains('bg-primary')) {
+
+                score -= 2
+
             }
+
+            if (positionBomb.includes(Number(squareElement.id))) {
+
+                squareElement.classList.toggle('bg-danger');
+
+                score--;
+
+                alert('Hai perso');
+
+            }
+            
+            scoreNumberEl.innerHTML = score
+            
         })
         
         
