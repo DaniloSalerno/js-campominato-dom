@@ -32,6 +32,8 @@ function generateSquares(element, limit) {
 
         const squareElement = document.createElement('div');
 
+        squareElement.style.width = `calc(100% / ${Math.sqrt(limit)} - 8px)`;
+
         squareElement.className = 'square bg-dark';
         element.append(squareElement);
 
