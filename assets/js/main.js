@@ -2,14 +2,16 @@ const btn = document.querySelector('button');
 const formDomEl = document.querySelector('form');
 const difficultyDomEl = document.querySelector('form select');
 const boxElement = document.querySelector('.box');
-
+const positionBomb = [];
+let squareLimit;
+let bomb;
 
 btn.addEventListener('click', (e) => {
     
     e.preventDefault();
 
     const difficulty = difficultyDomEl.value;
-    let squareLimit;
+    
     if (difficulty === 'easy') {
         squareLimit = 100;
     } else if (difficulty === 'medium') {
@@ -28,6 +30,8 @@ btn.addEventListener('click', (e) => {
 
 function generateSquares(element, limit) {
 
+    generateBomb(16,squareLimit);
+
     for (let i = 1; i <= limit; i++) {
 
         const squareElement = document.createElement('div');
@@ -42,38 +46,48 @@ function generateSquares(element, limit) {
         squareElement.addEventListener('click', () => {
 
             squareElement.classList.toggle('bg-dark')
-
-            squareElement.classList.toggle('bg-primary')
-
-            console.log(squareElement.id);
-
             
+            squareElement.classList.toggle('bg-primary')
+            
+            console.log(squareElement.id);
+            
+            if (squareElement.id == bomb) {
+                squareElement.classList.toggle('bg-danger');
+                alert('Hai perso')
+            }
         })
-        //generateBomb(16,squareElement);
         
-    }
-
+        
+    }    
 }
+
 
 
 /**
  * 
- * @param {number} number number of bombs
+ * @param {number} bombNum Number of bombs
+ * @param {number} limit Number of squares available
+ * @return {array} List of number contains bombs
  */
+function generateBomb(bombNum,limit) {
 
-/* function generateBomb(number,element) {
-
-    for (let i = 1; i <= number; i++) {
-        const bomb = (randomNumber(1,100))
-
-        if (element.id == bomb) {
-            element.classList.toggle('bg-danger')
+    do {
+        bomb = (randomNumber(1,limit));
+        
+        if (positionBomb.includes(bomb)) {
+            positionBomb.pop()
         }
+        positionBomb.push(bomb);
 
-    }
-
+    } while (positionBomb.length <= bombNum - 1);
 }
+
+
+
+
 
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-} */
+}
+
+
