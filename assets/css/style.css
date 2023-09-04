@@ -1,0 +1,24 @@
+body {
+    background-color: navy;
+}
+
+.container {
+    width: 700px;
+}
+
+.square {
+    width: calc(10% - 0.5rem);
+    aspect-ratio: 1 / 1;
+}
+
+@media screen and (max-width:576px) {
+    .container {
+        width: 400px;
+    }
+
+    .square {
+        width: 32px;
+    }
+
+}
+
