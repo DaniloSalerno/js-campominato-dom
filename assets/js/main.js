@@ -1,9 +1,11 @@
-const btn = document.querySelector('button');
+const btn = document.querySelector('form button');
 const scoreDomEl = document.querySelector('.score');
 const scoreNumberEl = document.querySelector('.score span')
 const formDomEl = document.querySelector('form');
 const difficultyDomEl = document.querySelector('form select');
 const boxElement = document.querySelector('.box');
+const gameOutDomEl = document.querySelector('.game_out');
+const gameOutBtn = document.querySelector('.game_out button');
 const positionBomb = [];
 let squareLimit;
 let bomb;
@@ -71,8 +73,8 @@ function generateSquares(element, limit) {
 
                 score--;
 
-                alert('Hai perso');
-
+                gameOutDomEl.classList.add('overlay');
+                gameOutDomEl.classList.remove('d-none');
             }
             
             scoreNumberEl.innerHTML = score
@@ -83,6 +85,7 @@ function generateSquares(element, limit) {
     }    
 }
 
+gameOutBtn.addEventListener('click', () => window.location.reload())
 
 
 /**
