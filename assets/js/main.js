@@ -31,6 +31,7 @@ btn.addEventListener('click', (e) => {
 function generateSquares(element, limit) {
 
     generateBomb(16,squareLimit);
+    console.log(positionBomb);
 
     for (let i = 1; i <= limit; i++) {
 
@@ -51,7 +52,7 @@ function generateSquares(element, limit) {
             
             console.log(squareElement.id);
             
-            if (squareElement.id == bomb) {
+            if (positionBomb.includes(Number(squareElement.id))) {
                 squareElement.classList.toggle('bg-danger');
                 alert('Hai perso')
             }
