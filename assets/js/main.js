@@ -76,12 +76,39 @@ function generateBomb(bombNum,limit) {
         bomb = (randomNumber(1,limit));
         
         if (positionBomb.includes(bomb)) {
-            positionBomb.pop()
+
+            for( var i = 0; i < positionBomb.length; i++){ 
+
+                if ( positionBomb[i] === bomb) {
+
+                  positionBomb.splice(i, 1); 
+
+                }
+
+             }
+
         }
         positionBomb.push(bomb);
 
     } while (positionBomb.length <= bombNum - 1);
+/*     for (let i = 0; i < bombNum; i++) {
+    
+        bomb = (randomNumber(1,limit));
+    
+        positionBomb.push(bomb);
+    }
+    
+        for( let i = 0; i < positionBomb.length; i++){ 
+    
+            if ( positionBomb[i] === bomb) {
+    
+              positionBomb.splice(i, 1); 
+    
+            }
+    
+         } */
 }
+
 
 
 
